@@ -46,8 +46,8 @@ final class Loader extends PluginBase{
 					$world = $player->getWorld();
 					$entity = $world->getEntity($trData->getEntityRuntimeId());
 					if($entity instanceof ArmorStandEntity){
-						$pos = $entity->getPosition();
-						if($player->hasReceivedChunk($pos->getFloorX() >> 4, $pos->getFloorZ() >> 4)){ // TODO: Perform ray-trace (playerPos -> clickPos) and distance check instead, to validate interaction?
+						$click_pos = $trData->getClickPos();
+						if($player->canInteract($click_pos, 8) && $entity->boundingBox->expandedCopy(0.25, 0.25, 0.25)->isVectorInside($click_pos)){
 							if($player->isSneaking()){
 								$old_pose = $entity->getPose();
 								$new_pose = ArmorStandPoseRegistry::instance()->next($old_pose);
@@ -57,7 +57,7 @@ final class Loader extends PluginBase{
 									$entity->setPose($ev->getNewPose());
 								}
 							}else{
-								$this->behaviour_registry->get($player->getInventory()->getItemInHand())->handleEquipment($player, $entity, $trData->getClickPos());
+								$this->behaviour_registry->get($player->getInventory()->getItemInHand())->handleEquipment($player, $entity, $click_pos);
 							}
 						}
 					}
