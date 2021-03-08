@@ -1,0 +1,11 @@
+--- # Poggit-CI Manifest. Open the CI at https://poggit.pmmp.io/ci/Muqsit/PMArmorStand
+build-by-default: true
+branches:
+- master
+projects:
+  PMArmorStand:
+    path: ""
+    libs:
+      - src: muqsit/simplepackethandler/SimplePacketHandler
+        version: ^0.0.1
+...
