@@ -12,6 +12,7 @@ use pocketmine\entity\EntitySizeInfo;
 use pocketmine\entity\Living;
 use pocketmine\entity\projectile\Arrow;
 use pocketmine\event\entity\EntityDamageByChildEntityEvent;
+use pocketmine\event\entity\EntityDamageByEntityEvent;
 use pocketmine\event\entity\EntityDamageEvent;
 use pocketmine\item\Item;
 use pocketmine\item\ItemFactory;
@@ -144,7 +145,13 @@ class ArmorStandEntity extends Living{
 	}
 
 	protected function doHitAnimation() : void{
-		$this->addArmorStandEntityTicker("ticker:wobble", new WobbleArmorStandEntityTicker($this));
+		if(
+			$this->lastDamageCause instanceof EntityDamageByEntityEvent &&
+			$this->lastDamageCause->getCause() === EntityDamageEvent::CAUSE_ENTITY_ATTACK &&
+			$this->lastDamageCause->getDamager() instanceof Player
+		){
+			$this->addArmorStandEntityTicker("ticker:wobble", new WobbleArmorStandEntityTicker($this));
+		}
 	}
 
 	protected function startDeathAnimation() : void{
