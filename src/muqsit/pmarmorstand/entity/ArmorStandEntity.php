@@ -59,6 +59,9 @@ class ArmorStandEntity extends Living{
 
 	public function getDrops() : array{
 		$drops = $this->getArmorInventory()->getContents();
+		if(!$this->item_in_hand->isNull()){
+			$drops[] = $this->item_in_hand;
+		}
 		$drops[] = ItemFactory::getInstance()->get(ItemIds::ARMOR_STAND);
 		return $drops;
 	}
