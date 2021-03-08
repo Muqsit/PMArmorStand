@@ -92,7 +92,7 @@ class ArmorStandEntity extends Living{
 
 	protected function addAttributes() : void{
 		parent::addAttributes();
-		$this->setMaxHealth(20);
+		$this->setMaxHealth(6);
 	}
 
 	protected function initEntity(CompoundTag $nbt) : void{
@@ -128,6 +128,9 @@ class ArmorStandEntity extends Living{
 
 		$nbt->setString(self::TAG_POSE, ArmorStandPoseRegistry::instance()->getIdentifier($this->pose));
 		return $nbt;
+	}
+
+	public function applyDamageModifiers(EntityDamageEvent $source) : void{
 	}
 
 	public function attack(EntityDamageEvent $source) : void{
