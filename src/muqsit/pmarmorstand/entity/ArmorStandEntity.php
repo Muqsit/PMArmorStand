@@ -26,6 +26,7 @@ use pocketmine\network\mcpe\protocol\MobEquipmentPacket;
 use pocketmine\network\mcpe\protocol\types\entity\EntityIds;
 use pocketmine\network\mcpe\protocol\types\entity\EntityMetadataProperties;
 use pocketmine\network\mcpe\protocol\types\inventory\ContainerIds;
+use pocketmine\network\mcpe\protocol\types\inventory\ItemStackWrapper;
 use pocketmine\player\Player;
 
 class ArmorStandEntity extends Living{
@@ -72,7 +73,7 @@ class ArmorStandEntity extends Living{
 
 	public function setItemInHand(Item $item_in_hand) : void{
 		$this->item_in_hand = $item_in_hand;
-		$packet = MobEquipmentPacket::create($this->getId(), TypeConverter::getInstance()->coreItemStackToNet($this->getItemInHand()), 0, ContainerIds::INVENTORY);
+		$packet = MobEquipmentPacket::create($this->getId(), ItemStackWrapper::legacy(TypeConverter::getInstance()->coreItemStackToNet($this->getItemInHand())), 0, ContainerIds::INVENTORY);
 		foreach($this->getViewers() as $viewer){
 			$viewer->getNetworkSession()->sendDataPacket($packet);
 		}
@@ -90,7 +91,7 @@ class ArmorStandEntity extends Living{
 
 	protected function sendSpawnPacket(Player $player) : void{
 		parent::sendSpawnPacket($player);
-		$player->getNetworkSession()->sendDataPacket(MobEquipmentPacket::create($this->getId(), TypeConverter::getInstance()->coreItemStackToNet($this->getItemInHand()), 0, ContainerIds::INVENTORY));
+		$player->getNetworkSession()->sendDataPacket(MobEquipmentPacket::create($this->getId(), ItemStackWrapper::legacy(TypeConverter::getInstance()->coreItemStackToNet($this->getItemInHand())), 0, ContainerIds::INVENTORY));
 	}
 
 	protected function addAttributes() : void{
