@@ -24,8 +24,7 @@ use pocketmine\world\World;
 
 final class Loader extends PluginBase{
 
-	/** @var ArmorStandBehaviourRegistry */
-	private $behaviour_registry;
+	private ArmorStandBehaviourRegistry $behaviour_registry;
 
 	protected function onLoad() : void{
 		$this->behaviour_registry = new ArmorStandBehaviourRegistry();

@@ -6,11 +6,8 @@ namespace muqsit\pmarmorstand\pose;
 
 final class SimpleArmorStandPose implements ArmorStandPose{
 
-	/** @var string */
-	private $name;
-
-	/** @var int */
-	private $network_id;
+	private string $name;
+	private int $network_id;
 
 	public function __construct(string $name, int $network_id){
 		$this->name = $name;

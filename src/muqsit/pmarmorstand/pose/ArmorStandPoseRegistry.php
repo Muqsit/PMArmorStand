@@ -16,13 +16,13 @@ final class ArmorStandPoseRegistry{
 	 *
 	 * @phpstan-var array<string, ArmorStandPose>
 	 */
-	private $poses = [];
+	private array $poses = [];
 
 	/** @var string[] */
-	private $identifiers = [];
+	private array $identifiers = [];
 
 	/** @var string[] */
-	private $nexts = [];
+	private array $nexts = [];
 
 	private function __construct(){
 		$this->register("default", new SimpleArmorStandPose("Default", 0));

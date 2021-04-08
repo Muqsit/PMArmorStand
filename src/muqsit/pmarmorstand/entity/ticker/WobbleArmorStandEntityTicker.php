@@ -11,8 +11,7 @@ final class WobbleArmorStandEntityTicker implements ArmorStandEntityTicker{
 	public const DATA_PROPERTY_WOBBLE = 11;
 	public const DEFAULT_TICKS = 9;
 
-	/** @var int */
-	private $ticks;
+	private int $ticks;
 
 	public function __construct(ArmorStandEntity $entity, int $ticks = self::DEFAULT_TICKS){
 		$this->ticks = $ticks;

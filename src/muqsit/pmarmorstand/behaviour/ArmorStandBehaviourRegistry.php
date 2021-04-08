@@ -13,10 +13,9 @@ use pocketmine\item\ItemFactory;
 final class ArmorStandBehaviourRegistry{
 
 	/** @var ArmorStandBehaviour[] */
-	private $behaviours = [];
+	private array $behaviours = [];
 
-	/** @var ArmorStandBehaviour */
-	private $fallback;
+	private ArmorStandBehaviour $fallback;
 
 	public function __construct(){
 		$this->registerFallback(new HeldItemArmorStandBehaviour());

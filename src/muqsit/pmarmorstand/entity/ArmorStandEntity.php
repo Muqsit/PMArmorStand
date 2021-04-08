@@ -41,14 +41,11 @@ class ArmorStandEntity extends Living{
 
 	protected $maxDeadTicks = 0;
 
-	/** @var ArmorStandPose */
-	private $pose;
-
-	/** @var Item */
-	protected $item_in_hand;
+	private ArmorStandPose $pose;
+	protected Item $item_in_hand;
 
 	/** @var ArmorStandEntityTicker[] */
-	protected $armor_stand_entity_tickers = [];
+	protected array $armor_stand_entity_tickers = [];
 
 	protected function getInitialSizeInfo() : EntitySizeInfo{
 		return new EntitySizeInfo(1.975, 0.5);

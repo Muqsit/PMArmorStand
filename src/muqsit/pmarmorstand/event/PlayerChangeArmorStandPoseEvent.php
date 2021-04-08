@@ -17,14 +17,9 @@ use pocketmine\player\Player;
 class PlayerChangeArmorStandPoseEvent extends EntityEvent implements Cancellable{
 	use CancellableTrait;
 
-	/** @var ArmorStandPose */
-	protected $old_pose;
-
-	/** @var ArmorStandPose */
-	protected $new_pose;
-
-	/** @var Player */
-	protected $causer;
+	protected ArmorStandPose $old_pose;
+	protected ArmorStandPose $new_pose;
+	protected Player $causer;
 
 	public function __construct(ArmorStandEntity $entity, ArmorStandPose $old_pose, ArmorStandPose $new_pose, Player $causer){
 		$this->entity = $entity;

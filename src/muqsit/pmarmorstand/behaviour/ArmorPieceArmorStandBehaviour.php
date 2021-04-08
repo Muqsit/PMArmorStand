@@ -11,8 +11,7 @@ use pocketmine\player\Player;
 
 class ArmorPieceArmorStandBehaviour implements ArmorStandBehaviour{
 
-	/** @var int */
-	private $slot;
+	private int $slot;
 
 	public function __construct(int $slot){
 		$this->slot = $slot;
