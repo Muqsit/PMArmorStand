@@ -111,8 +111,8 @@ class ArmorStandEntity extends Living{
 		$item_in_hand_tag = $nbt->getCompoundTag(self::TAG_HELD_ITEM);
 		$this->item_in_hand = $item_in_hand_tag !== null ? Item::nbtDeserialize($item_in_hand_tag) : ItemFactory::air();
 
-		$this->setPose($nbt->hasTag(self::TAG_POSE, StringTag::class) ?
-			ArmorStandPoseRegistry::instance()->get($nbt->getString(self::TAG_POSE)) :
+		$this->setPose(($tag_pose = $nbt->getTag(self::TAG_POSE)) instanceof StringTag ?
+			ArmorStandPoseRegistry::instance()->get($tag_pose->getValue()) :
 			ArmorStandPoseRegistry::instance()->default());
 	}
 
