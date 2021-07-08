@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace muqsit\pmarmorstand;
 
 use muqsit\pmarmorstand\entity\ArmorStandEntity;
+use muqsit\pmarmorstand\event\PlayerPlaceArmorStandEvent;
 use pocketmine\block\Block;
 use pocketmine\entity\Location;
 use pocketmine\item\Item;
@@ -29,7 +30,12 @@ class ArmorStandItem extends Item{
 			$yaw = fmod($player->getLocation()->getYaw() + 180.0, 360.0); // inverted player yaw
 			$yaw = round($yaw / 45.0) * 45.0; // round to nearest 45.0
 
-			$entity = new ArmorStandEntity(Location::fromObject($spawn_pos, $world, $yaw, 0.0));
+			($ev = new PlayerPlaceArmorStandEvent($player, Location::fromObject($spawn_pos, $world, $yaw, 0.0)))->call();
+			if($ev->isCancelled()){
+				return ItemUseResult::NONE();
+			}
+
+			$entity = new ArmorStandEntity($ev->getLocation());
 			$entity->spawnToAll();
 
 			$this->pop();
