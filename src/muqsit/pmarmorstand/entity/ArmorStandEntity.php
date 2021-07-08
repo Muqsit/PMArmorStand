@@ -6,6 +6,7 @@ namespace muqsit\pmarmorstand\entity;
 
 use muqsit\pmarmorstand\entity\ticker\ArmorStandEntityTicker;
 use muqsit\pmarmorstand\entity\ticker\WobbleArmorStandEntityTicker;
+use muqsit\pmarmorstand\event\ArmorStandMoveEvent;
 use muqsit\pmarmorstand\pose\ArmorStandPose;
 use muqsit\pmarmorstand\pose\ArmorStandPoseRegistry;
 use pocketmine\entity\EntitySizeInfo;
@@ -180,5 +181,12 @@ class ArmorStandEntity extends Living{
 		}
 
 		return $result || count($this->armor_stand_entity_tickers) > 0;
+	}
+
+	protected function move(float $dx, float $dy, float $dz) : void{
+		$from = $this->location->asLocation();
+		parent::move($dx, $dy, $dz);
+		$to = $this->location->asLocation();
+		(new ArmorStandMoveEvent($this, $from, $to))->call();
 	}
 }
