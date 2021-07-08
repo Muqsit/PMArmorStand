@@ -8,7 +8,7 @@ use muqsit\pmarmorstand\entity\ArmorStandEntity;
 use pocketmine\item\Item;
 use pocketmine\player\Player;
 
-class PlayerChangeArmorStandArmorEvent extends PlayerChangeArmorStandItemEvent{
+final class PlayerChangeArmorStandArmorEvent extends PlayerChangeArmorStandItemEvent{
 
 	protected int $slot;
 

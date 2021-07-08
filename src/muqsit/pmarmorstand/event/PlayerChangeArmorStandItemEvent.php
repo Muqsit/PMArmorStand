@@ -28,15 +28,15 @@ abstract class PlayerChangeArmorStandItemEvent extends EntityEvent implements Ca
 		$this->causer = $causer;
 	}
 
-	public function getOldItem() : Item{
+	final public function getOldItem() : Item{
 		return $this->old_item;
 	}
 
-	public function getNewItem() : Item{
+	final public function getNewItem() : Item{
 		return $this->new_item;
 	}
 
-	public function getCauser() : Player{
+	final public function getCauser() : Player{
 		return $this->causer;
 	}
 }

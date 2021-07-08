@@ -10,7 +10,7 @@ use pocketmine\event\CancellableTrait;
 use pocketmine\event\player\PlayerEvent;
 use pocketmine\player\Player;
 
-class PlayerPlaceArmorStandEvent extends PlayerEvent implements Cancellable{
+final class PlayerPlaceArmorStandEvent extends PlayerEvent implements Cancellable{
 	use CancellableTrait;
 
 	private Location $location;
