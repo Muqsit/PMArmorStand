@@ -44,6 +44,7 @@ class ArmorStandEntity extends Living{
 
 	private ArmorStandPose $pose;
 	protected Item $item_in_hand;
+	protected bool $can_be_moved_by_currents = true;
 
 	/** @var ArmorStandEntityTicker[] */
 	protected array $armor_stand_entity_tickers = [];
@@ -169,6 +170,14 @@ class ArmorStandEntity extends Living{
 
 	public function removeArmorStandEntityTicker(string $identifier) : void{
 		unset($this->armor_stand_entity_tickers[$identifier]);
+	}
+
+	public function canBeMovedByCurrents() : bool{
+		return $this->can_be_moved_by_currents;
+	}
+
+	public function setCanBeMovedByCurrents(bool $can_be_moved_by_currents) : void{
+		$this->can_be_moved_by_currents = $can_be_moved_by_currents;
 	}
 
 	protected function entityBaseTick(int $tickDiff = 1) : bool{
