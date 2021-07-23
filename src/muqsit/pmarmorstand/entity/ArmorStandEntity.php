@@ -143,11 +143,11 @@ class ArmorStandEntity extends Living{
 		}
 	}
 
-	public function knockBack(float $x, float $z, float $base = 0.4) : void{
+	public function knockBack(float $x, float $z, float $force = 0.4, ?float $verticalLimit = 0.4) : void{
 	}
 
-	public function actuallyKnockBack(float $x, float $z, float $base = 0.4) : void{
-		parent::knockBack($x, $z, $base);
+	public function actuallyKnockBack(float $x, float $z, float $force = 0.4, ?float $verticalLimit = 0.4) : void{
+		parent::knockBack($x, $z, $force, $verticalLimit);
 	}
 
 	protected function doHitAnimation() : void{
