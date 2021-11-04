@@ -54,7 +54,7 @@ final class Loader extends PluginBase{
 				return;
 			}
 
-			$click_pos = $trData->getClickPos();
+			$click_pos = $trData->getClickPosition();
 			if(!$player->canInteract($click_pos, 8) || !$entity->boundingBox->expandedCopy(0.25, 0.25, 0.25)->isVectorInside($click_pos)){
 				return;
 			}
