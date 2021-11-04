@@ -49,7 +49,7 @@ final class Loader extends PluginBase{
 			}
 
 			$world = $player->getWorld();
-			$entity = $world->getEntity($trData->getEntityRuntimeId());
+			$entity = $world->getEntity($trData->getActorRuntimeId());
 			if(!($entity instanceof ArmorStandEntity)){
 				return;
 			}
