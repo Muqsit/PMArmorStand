@@ -18,6 +18,7 @@ use pocketmine\event\entity\EntityDamageEvent;
 use pocketmine\item\Item;
 use pocketmine\item\ItemFactory;
 use pocketmine\item\ItemIds;
+use pocketmine\item\VanillaItems;
 use pocketmine\nbt\NBT;
 use pocketmine\nbt\tag\CompoundTag;
 use pocketmine\nbt\tag\ListTag;
@@ -111,7 +112,7 @@ class ArmorStandEntity extends Living{
 		}
 
 		$item_in_hand_tag = $nbt->getCompoundTag(self::TAG_HELD_ITEM);
-		$this->item_in_hand = $item_in_hand_tag !== null ? Item::nbtDeserialize($item_in_hand_tag) : ItemFactory::air();
+		$this->item_in_hand = $item_in_hand_tag !== null ? Item::nbtDeserialize($item_in_hand_tag) : VanillaItems::AIR();
 
 		$this->setPose(($tag_pose = $nbt->getTag(self::TAG_POSE)) instanceof StringTag ?
 			ArmorStandPoseRegistry::instance()->get($tag_pose->getValue()) :

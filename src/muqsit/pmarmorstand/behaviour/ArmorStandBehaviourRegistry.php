@@ -9,6 +9,7 @@ use pocketmine\inventory\ArmorInventory;
 use pocketmine\item\Armor;
 use pocketmine\item\Item;
 use pocketmine\item\ItemFactory;
+use pocketmine\item\VanillaItems;
 
 final class ArmorStandBehaviourRegistry{
 
@@ -28,7 +29,7 @@ final class ArmorStandBehaviourRegistry{
 
 		$this->register(VanillaBlocks::MOB_HEAD()->asItem(), new ArmorPieceArmorStandBehaviour(ArmorInventory::SLOT_HEAD));
 		$this->register(VanillaBlocks::CARVED_PUMPKIN()->asItem(), new ArmorPieceArmorStandBehaviour(ArmorInventory::SLOT_HEAD));
-		$this->register(ItemFactory::air(), new NullItemArmorStandBehaviour());
+		$this->register(VanillaItems::AIR(), new NullItemArmorStandBehaviour());
 	}
 
 	public function register(Item $item, ArmorStandBehaviour $behaviour) : void{

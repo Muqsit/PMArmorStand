@@ -10,7 +10,7 @@ use muqsit\pmarmorstand\event\PlayerChangeArmorStandArmorEvent;
 use muqsit\pmarmorstand\event\PlayerChangeArmorStandHeldItemEvent;
 use muqsit\pmarmorstand\util\ArmorStandOffsetSlotFinder;
 use pocketmine\inventory\ArmorInventory;
-use pocketmine\item\ItemFactory;
+use pocketmine\item\VanillaItems;
 use pocketmine\math\Vector3;
 use pocketmine\player\Player;
 
@@ -27,7 +27,7 @@ final class NullItemArmorStandBehaviour implements ArmorStandBehaviour{
 		}
 
 		$offset = $click_pos->subtractVector($entity->getPosition());
-		$new_item = ItemFactory::air(); // or, $item
+		$new_item = VanillaItems::AIR(); // or, $item
 		if(ArmorStandOffsetSlotFinder::isRightArm($offset)){
 			$old_item = $entity->getItemInHand();
 			if(!$old_item->isNull()){
