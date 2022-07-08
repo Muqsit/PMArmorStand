@@ -26,6 +26,7 @@ use pocketmine\nbt\tag\StringTag;
 use pocketmine\network\mcpe\convert\TypeConverter;
 use pocketmine\network\mcpe\protocol\MobEquipmentPacket;
 use pocketmine\network\mcpe\protocol\types\entity\EntityIds;
+use pocketmine\network\mcpe\protocol\types\entity\EntityMetadataCollection;
 use pocketmine\network\mcpe\protocol\types\entity\EntityMetadataProperties;
 use pocketmine\network\mcpe\protocol\types\inventory\ContainerIds;
 use pocketmine\network\mcpe\protocol\types\inventory\ItemStackWrapper;
@@ -58,6 +59,11 @@ class ArmorStandEntity extends Living{
 		return "Armor Stand";
 	}
 
+	protected function syncNetworkData(EntityMetadataCollection $properties) : void{
+		parent::syncNetworkData($properties);
+		$properties->setInt(EntityMetadataProperties::ARMOR_STAND_POSE_INDEX, $this->pose->getNetworkId());
+	}
+
 	public function getDrops() : array{
 		$drops = $this->getArmorInventory()->getContents();
 		if(!$this->item_in_hand->isNull()){
@@ -85,7 +91,7 @@ class ArmorStandEntity extends Living{
 
 	public function setPose(ArmorStandPose $pose) : void{
 		$this->pose = $pose;
-		$this->getNetworkProperties()->setInt(EntityMetadataProperties::ARMOR_STAND_POSE_INDEX, $pose->getNetworkId());
+		$this->networkPropertiesDirty = true;
 		$this->scheduleUpdate();
 	}
 
