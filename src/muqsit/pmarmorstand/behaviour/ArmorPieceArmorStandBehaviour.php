@@ -11,11 +11,9 @@ use pocketmine\player\Player;
 
 class ArmorPieceArmorStandBehaviour implements ArmorStandBehaviour{
 
-	private int $slot;
-
-	public function __construct(int $slot){
-		$this->slot = $slot;
-	}
+	public function __construct(
+		private int $slot
+	){}
 
 	public function handleEquipment(Player $player, ArmorStandEntity $entity, Vector3 $click_pos) : void{
 		$inventory = $player->getInventory();
