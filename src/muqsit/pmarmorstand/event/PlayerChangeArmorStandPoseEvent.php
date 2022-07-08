@@ -12,7 +12,7 @@ use pocketmine\event\entity\EntityEvent;
 use pocketmine\player\Player;
 
 /**
- * @phpstan-extends EntityEvent<ArmorStandEntity>
+ * @extends EntityEvent<ArmorStandEntity>
  */
 final class PlayerChangeArmorStandPoseEvent extends EntityEvent implements Cancellable{
 	use CancellableTrait;

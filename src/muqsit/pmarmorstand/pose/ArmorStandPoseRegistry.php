@@ -11,11 +11,7 @@ final class ArmorStandPoseRegistry{
 		return $instance ??= new self();
 	}
 
-	/**
-	 * @var ArmorStandPose[]
-	 *
-	 * @phpstan-var array<string, ArmorStandPose>
-	 */
+	/** @var array<string, ArmorStandPose> */
 	private array $poses = [];
 
 	/** @var string[] */
@@ -59,9 +55,7 @@ final class ArmorStandPoseRegistry{
 	}
 
 	/**
-	 * @return ArmorStandPose[]
-	 *
-	 * @phpstan-return array<string, ArmorStandPose>
+	 * @return array<string, ArmorStandPose>
 	 */
 	public function getAll() : array{
 		return $this->poses;

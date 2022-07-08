@@ -9,7 +9,7 @@ use pocketmine\entity\Location;
 use pocketmine\event\entity\EntityEvent;
 
 /**
- * @phpstan-extends EntityEvent<ArmorStandEntity>
+ * @extends EntityEvent<ArmorStandEntity>
  */
 final class ArmorStandMoveEvent extends EntityEvent{
 
