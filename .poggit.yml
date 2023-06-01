@@ -7,5 +7,6 @@ projects:
     path: ""
     libs:
       - src: muqsit/simplepackethandler/SimplePacketHandler
-        version: ^0.0.1
+        branch: pm5
+        version: ^0.1.3
 ...

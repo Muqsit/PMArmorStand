@@ -9,6 +9,7 @@ use muqsit\pmarmorstand\entity\ticker\WobbleArmorStandEntityTicker;
 use muqsit\pmarmorstand\event\ArmorStandMoveEvent;
 use muqsit\pmarmorstand\pose\ArmorStandPose;
 use muqsit\pmarmorstand\pose\ArmorStandPoseRegistry;
+use muqsit\pmarmorstand\vanilla\ExtraVanillaItems;
 use pocketmine\entity\EntitySizeInfo;
 use pocketmine\entity\Living;
 use pocketmine\entity\projectile\Arrow;
@@ -16,8 +17,6 @@ use pocketmine\event\entity\EntityDamageByChildEntityEvent;
 use pocketmine\event\entity\EntityDamageByEntityEvent;
 use pocketmine\event\entity\EntityDamageEvent;
 use pocketmine\item\Item;
-use pocketmine\item\ItemFactory;
-use pocketmine\item\ItemIds;
 use pocketmine\item\VanillaItems;
 use pocketmine\nbt\NBT;
 use pocketmine\nbt\tag\CompoundTag;
@@ -42,7 +41,7 @@ class ArmorStandEntity extends Living{
 		return EntityIds::ARMOR_STAND;
 	}
 
-	protected $maxDeadTicks = 0;
+	protected int $maxDeadTicks = 0;
 
 	private ArmorStandPose $pose;
 	protected Item $item_in_hand;
@@ -69,7 +68,7 @@ class ArmorStandEntity extends Living{
 		if(!$this->item_in_hand->isNull()){
 			$drops[] = $this->item_in_hand;
 		}
-		$drops[] = ItemFactory::getInstance()->get(ItemIds::ARMOR_STAND);
+		$drops[] = ExtraVanillaItems::ARMOR_STAND();
 		return $drops;
 	}
 

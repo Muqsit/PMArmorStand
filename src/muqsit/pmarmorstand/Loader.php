@@ -8,13 +8,10 @@ use muqsit\pmarmorstand\behaviour\ArmorStandBehaviourRegistry;
 use muqsit\pmarmorstand\entity\ArmorStandEntity;
 use muqsit\pmarmorstand\event\PlayerChangeArmorStandPoseEvent;
 use muqsit\pmarmorstand\pose\ArmorStandPoseRegistry;
+use muqsit\pmarmorstand\vanilla\ExtraVanillaData;
 use muqsit\simplepackethandler\SimplePacketHandler;
-use pocketmine\data\bedrock\EntityLegacyIds;
 use pocketmine\entity\EntityDataHelper;
 use pocketmine\entity\EntityFactory;
-use pocketmine\item\ItemFactory;
-use pocketmine\item\ItemIdentifier;
-use pocketmine\item\ItemIds;
 use pocketmine\nbt\tag\CompoundTag;
 use pocketmine\network\mcpe\NetworkSession;
 use pocketmine\network\mcpe\protocol\InventoryTransactionPacket;
@@ -31,9 +28,9 @@ final class Loader extends PluginBase{
 
 		EntityFactory::getInstance()->register(ArmorStandEntity::class, function(World $world, CompoundTag $nbt) : ArmorStandEntity{
 			return new ArmorStandEntity(EntityDataHelper::parseLocation($nbt, $world), $nbt);
-		}, ["PMArmorStand"], EntityLegacyIds::ARMOR_STAND);
+		}, ["PMArmorStand"]);
 
-		ItemFactory::getInstance()->register(new ArmorStandItem(new ItemIdentifier(ItemIds::ARMOR_STAND, 0), "Armor Stand"));
+		ExtraVanillaData::registerOnAllThreads($this->getServer()->getAsyncPool());
 	}
 
 	protected function onEnable() : void{

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace muqsit\pmarmorstand;
+namespace muqsit\pmarmorstand\vanilla;
 
 use muqsit\pmarmorstand\entity\ArmorStandEntity;
 use muqsit\pmarmorstand\event\PlayerPlaceArmorStandEvent;
@@ -16,9 +16,9 @@ use pocketmine\player\Player;
 
 class ArmorStandItem extends Item{
 
-	public function onInteractBlock(Player $player, Block $blockReplace, Block $blockClicked, int $face, Vector3 $clickVector) : ItemUseResult{
+	public function onInteractBlock(Player $player, Block $blockReplace, Block $blockClicked, int $face, Vector3 $clickVector, array &$returnedItems) : ItemUseResult{
 		if(!$blockClicked->isSolid()){
-			return parent::onInteractBlock($player, $blockReplace, $blockClicked, $face, $clickVector);
+			return parent::onInteractBlock($player, $blockReplace, $blockClicked, $face, $clickVector, $returnedItems);
 		}
 
 		$pos = $blockClicked->getPosition();

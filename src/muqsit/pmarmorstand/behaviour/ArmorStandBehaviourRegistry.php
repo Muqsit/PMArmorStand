@@ -8,7 +8,6 @@ use pocketmine\block\VanillaBlocks;
 use pocketmine\inventory\ArmorInventory;
 use pocketmine\item\Armor;
 use pocketmine\item\Item;
-use pocketmine\item\ItemFactory;
 use pocketmine\item\VanillaItems;
 
 final class ArmorStandBehaviourRegistry{
@@ -21,7 +20,7 @@ final class ArmorStandBehaviourRegistry{
 	public function __construct(){
 		$this->registerFallback(new HeldItemArmorStandBehaviour());
 
-		foreach(ItemFactory::getInstance()->getAllRegistered() as $item){
+		foreach(VanillaItems::getAll() as $item){
 			if($item instanceof Armor){
 				$this->register($item, new ArmorPieceArmorStandBehaviour($item->getArmorSlot()));
 			}
@@ -33,7 +32,7 @@ final class ArmorStandBehaviourRegistry{
 	}
 
 	public function register(Item $item, ArmorStandBehaviour $behaviour) : void{
-		$this->behaviours[$item->getId()] = $behaviour;
+		$this->behaviours[$item->getTypeId()] = $behaviour;
 	}
 
 	public function registerFallback(ArmorStandBehaviour $behaviour) : void{
@@ -41,6 +40,6 @@ final class ArmorStandBehaviourRegistry{
 	}
 
 	public function get(Item $item) : ArmorStandBehaviour{
-		return $this->behaviours[$item->getId()] ?? $this->fallback;
+		return $this->behaviours[$item->getTypeId()] ?? $this->fallback;
 	}
 }
