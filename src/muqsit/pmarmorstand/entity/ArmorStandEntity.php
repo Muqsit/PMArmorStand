@@ -129,15 +129,15 @@ class ArmorStandEntity extends Living{
 
 		$armor_pieces = [];
 		foreach($this->getArmorInventory()->getContents() as $slot => $item) {
-            if (!$item->isNull()) {
-                $armor_pieces[] = $item->nbtSerialize($slot);
-            }
-        }
+			if (!$item->isNull()) {
+				$armor_pieces[] = $item->nbtSerialize($slot);
+			}
+		}
 		$nbt->setTag(self::TAG_ARMOR_INVENTORY, new ListTag($armor_pieces, NBT::TAG_Compound));
 
-        if (!$this->item_in_hand->isNull()) {
-            $nbt->setTag(self::TAG_HELD_ITEM, $this->item_in_hand->nbtSerialize());
-        }
+		if (!$this->item_in_hand->isNull()) {
+			$nbt->setTag(self::TAG_HELD_ITEM, $this->item_in_hand->nbtSerialize());
+		}
 
 		$nbt->setString(self::TAG_POSE, ArmorStandPoseRegistry::instance()->getIdentifier($this->pose));
 		return $nbt;
