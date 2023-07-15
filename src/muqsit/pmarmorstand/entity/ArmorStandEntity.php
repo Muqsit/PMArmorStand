@@ -133,7 +133,7 @@ class ArmorStandEntity extends Living{
 		}
 		$nbt->setTag(self::TAG_ARMOR_INVENTORY, new ListTag($armor_pieces, NBT::TAG_Compound));
 
-		if (!$this->item_in_hand->isNull()) {
+		if(!$this->item_in_hand->isNull()){
 			$nbt->setTag(self::TAG_HELD_ITEM, $this->item_in_hand->nbtSerialize());
 		}
 
