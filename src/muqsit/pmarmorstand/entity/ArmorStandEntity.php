@@ -129,7 +129,9 @@ class ArmorStandEntity extends Living{
 
 		$armor_pieces = [];
 		foreach($this->getArmorInventory()->getContents() as $slot => $item){
-			$armor_pieces[] = $item->nbtSerialize($slot);
+			if($item !== null) {
+				$armor_pieces[] = $item->nbtSerialize($slot);
+			}
 		}
 		$nbt->setTag(self::TAG_ARMOR_INVENTORY, new ListTag($armor_pieces, NBT::TAG_Compound));
 
